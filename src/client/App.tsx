@@ -1,8 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataPoints = ["/lists", "/lists/1", "/groceries", "groceries/1"];
+
+      await Promise.all(
+        dataPoints.map(async (dataPoint) => await fetch(dataPoint))
+      );
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
