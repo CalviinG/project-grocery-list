@@ -1,6 +1,6 @@
 import { ColumnValue, Connection, Request } from "tedious";
 import { config } from "./config";
-import { EDatabaseModels } from "../core/types";
+import { EDatabaseModels, TGrocery } from "../core/types";
 
 const idMap = {
   [EDatabaseModels.Grocery]: "groceryId",
@@ -61,22 +61,23 @@ const execute = async <T>(query: string): Promise<T[]> => {
   });
 };
 
-const fetchOne = async <T>(model: EDatabaseModels, id: string): Promise<T> => {
+export const fetchOne = async <T>(model: EDatabaseModels, id: string): Promise<T> => {
   const query = `SELECT * FROM ${model} WHERE ${idMap[model]} = '${id}'`;
   const result = await execute<T>(query);
-
-  // if (model === EDatabaseModels.List) {
-  //   const q1 = `SELECT * FROM `;
-  // }
 
   return result[0];
 };
 
-const fetchAll = async <T>(model: EDatabaseModels): Promise<T[]> => {
+export const fetchGroceryList = async (id: string): Promise<TGrocery[]> => {
+  const query = `SELECT GroceryList.groceryId, Grocery.name FROM GroceryList JOIN Grocery ON GroceryList.groceryId = Grocery.groceryId WHERE GroceryList.listId = ${id}`;
+  const result = await execute<TGrocery>(query);
+
+  return result;
+};
+
+export const fetchAll = async <T>(model: EDatabaseModels): Promise<T[]> => {
   const query = `SELECT * FROM ${model}`;
   const result = await execute<T>(query);
 
   return result;
 };
-
-export const db = { fetchOne, fetchAll };

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { db } from "../db";
-import { TList, EDatabaseModels } from "../../core/types";
+import { fetchAll, fetchGroceryList, fetchOne } from "../db";
+import { TList, EDatabaseModels, TGrocery } from "../../core/types";
 
 const fetchLists = async (req: Request, res: Response) => {
   try {
-    const lists = await db.fetchAll<TList>(EDatabaseModels.List);
+    const lists = await fetchAll<TList>(EDatabaseModels.List);
 
     res.json(lists);
   } catch (error) {
@@ -14,7 +14,10 @@ const fetchLists = async (req: Request, res: Response) => {
 
 const fetchList = async (req: Request, res: Response) => {
   try {
-    const list = await db.fetchOne<TList>(EDatabaseModels.List, req.params.id);
+    const id = req.params.id;
+    const list = await fetchOne<TList>(EDatabaseModels.List, id);
+    const groceries = await fetchGroceryList(id);
+    list.groceries = groceries;
 
     res.json(list);
   } catch (error) {
