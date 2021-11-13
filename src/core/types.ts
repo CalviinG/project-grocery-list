@@ -1,6 +1,7 @@
 export type TList = {
   listId: string;
   name: string;
+  groceries: TGrocery[];
 };
 
 export type TGrocery = {
