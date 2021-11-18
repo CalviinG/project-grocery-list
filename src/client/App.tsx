@@ -1,38 +1,16 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppRoutes } from "./constants";
+import { List, Lists } from "./modules";
 
-function App() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const dataPoints = ["/lists", "/lists/1", "/groceries", "groceries/1"];
-
-      await Promise.all(
-        dataPoints.map(async (dataPoint) => await fetch(dataPoint))
-      );
-    };
-
-    fetchData();
-  }, []);
-
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoutes.Lists} element={<Lists />} />
+        <Route path={AppRoutes.List} element={<List />} />
+        <Route path="*" element={<Lists />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
