@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { fetchAll, fetchOne } from "../db";
+import { dbRemoveGrocery, fetchAll, fetchOne } from "../db";
 import { TGrocery, EDatabaseModels } from "../../core/types";
 
 const fetchGroceries = async (req: Request, res: Response) => {
@@ -25,4 +25,15 @@ const fetchGrocery = async (req: Request, res: Response) => {
   }
 };
 
-export const groceries = { fetchGroceries, fetchGrocery };
+const removeGrocery = (req: Request, res: Response) => {
+  try {
+    dbRemoveGrocery(req.params.id);
+
+    res.json(200);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+
+export const groceries = { fetchGroceries, fetchGrocery, removeGrocery };

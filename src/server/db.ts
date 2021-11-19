@@ -81,3 +81,8 @@ export const fetchAll = async <T>(model: EDatabaseModels): Promise<T[]> => {
 
   return result;
 };
+
+export const dbRemoveGrocery = (id: string) => {
+  const query = `DELETE grocery WHERE groceryId = ${id}`;
+  execute(query);
+};

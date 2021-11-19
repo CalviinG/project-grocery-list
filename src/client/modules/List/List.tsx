@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TList } from "../../../core/types";
@@ -22,6 +23,10 @@ export const List = () => {
     }
   }, [fetchList, listId]);
 
+  const removeGrocery = (groceryId: string) => {
+    axios.delete(`/groceries/${groceryId}`);
+  };
+
   if (loading) {
     return <div>Loading list..</div>;
   }
@@ -35,7 +40,10 @@ export const List = () => {
       <h3>{list.name}</h3>
       <ul>
         {list.groceries.map((grocery) => (
-          <li key={grocery.groceryId}>{grocery.name}</li>
+          <li key={grocery.groceryId}>
+            <span>{grocery.name}</span>
+            <button onClick={() => removeGrocery(grocery.groceryId)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
