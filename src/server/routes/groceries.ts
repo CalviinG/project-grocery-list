@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { dbRemoveGrocery, fetchAll, fetchOne } from "../db";
-import { TGrocery, EDatabaseModels } from "../../core/types";
+import { Request, Response } from 'express';
+import { dbRemoveGrocery, fetchAll, fetchOne } from '../db';
+import { TGrocery, EDatabaseModels } from '../../core/types';
 
 const fetchGroceries = async (req: Request, res: Response) => {
   try {
@@ -14,10 +14,7 @@ const fetchGroceries = async (req: Request, res: Response) => {
 
 const fetchGrocery = async (req: Request, res: Response) => {
   try {
-    const grocery = await fetchOne<TGrocery>(
-      EDatabaseModels.Grocery,
-      req.params.id
-    );
+    const grocery = await fetchOne<TGrocery>(EDatabaseModels.Grocery, req.params.id);
 
     res.json(grocery);
   } catch (error) {
@@ -34,6 +31,5 @@ const removeGrocery = (req: Request, res: Response) => {
     res.status(500).json(error);
   }
 };
-
 
 export const groceries = { fetchGroceries, fetchGrocery, removeGrocery };

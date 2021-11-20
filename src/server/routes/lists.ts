@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { fetchAll, fetchGroceryList, fetchOne } from "../db";
-import { TList, EDatabaseModels, TGrocery } from "../../core/types";
+import { Request, Response } from 'express';
+import { fetchAll, fetchGroceryList, fetchOne } from '../db';
+import { TList, EDatabaseModels, TGrocery } from '../../core/types';
 
 const fetchLists = async (req: Request, res: Response) => {
   try {
