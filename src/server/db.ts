@@ -86,3 +86,11 @@ export const dbRemoveGrocery = (id: string) => {
   const query = `DELETE grocery WHERE groceryId = ${id}`;
   execute(query);
 };
+
+export const dbCreateGrocery = async (name: string) => {
+  const query = `INSERT INTO grocery(name) VALUES ('${name}'); SELECT @@IDENTITY AS id`;
+  const result = await execute<{ id: number }>(query);
+  const grocery = await fetchOne<TGrocery>(EDatabaseModels.Grocery, result[0].id.toString());
+
+  return grocery;
+};
