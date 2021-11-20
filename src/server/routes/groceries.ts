@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { dbCreateGrocery, dbRemoveGrocery, fetchAll, fetchOne } from '../db';
+import { dbCreateGrocery, dbRemoveGrocery, dbUpdateGrocery, fetchAll, fetchOne } from '../db';
 import { TGrocery, EDatabaseModels } from '../../core/types';
 
 const fetchGroceries = async (req: Request, res: Response) => {
@@ -42,4 +42,14 @@ const createGrocery = async (req: Request, res: Response) => {
   }
 };
 
-export const groceries = { fetchGroceries, fetchGrocery, removeGrocery, createGrocery };
+const updateGrocery = async (req: Request, res: Response) => {
+  try {
+    const grocery = await dbUpdateGrocery(req.body.name, req.params.id);
+
+    res.status(200).json(grocery);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const groceries = { fetchGroceries, fetchGrocery, removeGrocery, createGrocery, updateGrocery };

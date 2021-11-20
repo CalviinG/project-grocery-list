@@ -94,3 +94,11 @@ export const dbCreateGrocery = async (name: string) => {
 
   return grocery;
 };
+
+export const dbUpdateGrocery = async (name: string, id: string) => {
+  const query = `UPDATE grocery SET name '${name}' WHERE groceryID = ${id} ; SELECT @@IDENTITY AS id`;
+  const result = await execute<{ id: number }>(query);
+  const grocery = await fetchOne<TGrocery>(EDatabaseModels.Grocery, result[0].id.toString());
+
+  return grocery;
+};
