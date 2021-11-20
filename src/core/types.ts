@@ -10,6 +10,6 @@ export type TGrocery = {
 };
 
 export enum EDatabaseModels {
-  List = "List",
-  Grocery = "Grocery",
+  List = 'List',
+  Grocery = 'Grocery'
 }

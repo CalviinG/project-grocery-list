@@ -1,10 +1,10 @@
-import { ColumnValue, Connection, Request } from "tedious";
-import { config } from "./config";
-import { EDatabaseModels, TGrocery } from "../core/types";
+import { ColumnValue, Connection, Request } from 'tedious';
+import { config } from './config';
+import { EDatabaseModels, TGrocery } from '../core/types';
 
 const idMap = {
-  [EDatabaseModels.Grocery]: "groceryId",
-  [EDatabaseModels.List]: "listId",
+  [EDatabaseModels.Grocery]: 'groceryId',
+  [EDatabaseModels.List]: 'listId'
 };
 
 const mapRow = <T>(columns: ColumnValue[]): T => {
@@ -20,7 +20,7 @@ const connect = (): Promise<Connection> => {
   return new Promise((resolve, reject) => {
     const connection = new Connection(config);
 
-    connection.on("connect", (error) => {
+    connection.on('connect', (error) => {
       if (error) {
         reject(error);
       } else {
@@ -28,7 +28,7 @@ const connect = (): Promise<Connection> => {
       }
     });
 
-    connection.on("error", (error) => {
+    connection.on('error', (error) => {
       reject(error);
     });
 
@@ -48,11 +48,11 @@ const execute = async <T>(query: string): Promise<T[]> => {
       }
     });
 
-    request.on("row", (rowColumnValues) => {
+    request.on('row', (rowColumnValues) => {
       results.push(mapRow(rowColumnValues));
     });
 
-    request.on("requestCompleted", () => {
+    request.on('requestCompleted', () => {
       resolve(results);
       connection.close();
     });
