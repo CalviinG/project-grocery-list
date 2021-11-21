@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import axios from 'axios';
-import { TGrocery } from '../../core/types';
+import { TGrocery } from '@/core';
 
 export const useGroceries = () => {
   const fetchGroceries = useCallback(async () => {

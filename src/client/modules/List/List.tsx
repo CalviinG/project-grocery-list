@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { TList } from '../../../core/types';
-import { useLists } from '../../hooks';
+import { useLists } from '~/hooks';
+import { TList } from '@/core';
 
 export const List = () => {
   const [list, setList] = useState<TList | null>(null);

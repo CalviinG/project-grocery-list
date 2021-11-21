@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TGrocery } from '../../../core/types';
-import { useGroceries } from '../../hooks';
+import { useGroceries } from '~/hooks';
+import { TGrocery } from '@/core';
 
 export const Grocery = () => {
   const [grocery, setGrocery] = useState<TGrocery | null>(null);

@@ -1,4 +1,4 @@
-import { AppRoutes } from '../constants';
+import { AppRoutes } from '~/constants';
 
 export const useAppRoute = () => {
   const routeMap = {
