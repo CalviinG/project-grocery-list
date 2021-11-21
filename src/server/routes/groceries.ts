@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import { TGrocery, EDatabaseModels } from '../../core';
 import { dbCreateGrocery, dbRemoveGrocery, fetchAll, fetchOne } from '../db';
-import { TGrocery, EDatabaseModels } from '../../core/types';
 
 const fetchGroceries = async (req: Request, res: Response) => {
   try {

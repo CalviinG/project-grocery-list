@@ -1,6 +1,6 @@
 import { ColumnValue, Connection, Request } from 'tedious';
+import { EDatabaseModels, TGrocery } from '../core';
 import { config } from './config';
-import { EDatabaseModels, TGrocery } from '../core/types';
 
 const idMap = {
   [EDatabaseModels.Grocery]: 'groceryId',

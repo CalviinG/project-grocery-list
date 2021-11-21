@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TGrocery } from '../../../core/types';
-import { AppRoutes } from '../../constants';
-import { useAppRoute, useGroceries } from '../../hooks';
+import { AppRoutes } from '~/constants';
+import { useAppRoute, useGroceries } from '~/hooks';
+import { TGrocery } from '@/core';
 
 export const Groceries = () => {
   const [groceries, setGroceries] = useState<TGrocery[]>([]);
