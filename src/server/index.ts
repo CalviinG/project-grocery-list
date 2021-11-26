@@ -3,6 +3,8 @@ import { groceries, lists } from './routes';
 
 const app = express();
 
+app.use(express.json());
+
 app.get('/groceries', groceries.fetchGroceries);
 app.get('/groceries/:id', groceries.fetchGrocery);
 app.delete('/groceries/:id', groceries.removeGrocery);
