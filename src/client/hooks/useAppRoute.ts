@@ -1,7 +1,9 @@
-import { AppRoutes } from '../constants';
+import { AppRoutes } from '~/constants';
 
 export const useAppRoute = () => {
   const routeMap = {
+    [AppRoutes.Groceries]: null,
+    [AppRoutes.Grocery]: ':groceryId',
     [AppRoutes.Lists]: null,
     [AppRoutes.List]: ':listId'
   };

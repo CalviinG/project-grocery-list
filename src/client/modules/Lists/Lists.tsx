@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { TList } from "../../../core/types";
-import { AppRoutes } from "../../constants";
-import { useAppRoute, useLists } from "../../hooks";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '~/constants';
+import { useAppRoute, useLists } from '~/hooks';
+import { TList } from '@/core';
 
 export const Lists = () => {
   const [lists, setLists] = useState<TList[]>([]);
