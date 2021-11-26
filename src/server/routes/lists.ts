@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { TList, EDatabaseModels } from '../../core';
-import { fetchAll, fetchGroceryList, fetchOne } from '../db';
+import { fetchAll, fetchGroceryList, fetchOne, dbCreateList } from '../db';
 
 const fetchLists = async (req: Request, res: Response) => {
   try {
@@ -25,4 +25,14 @@ const fetchList = async (req: Request, res: Response) => {
   }
 };
 
-export const lists = { fetchLists, fetchList };
+const createList = async (req: Request, res: Response) => {
+  try {
+    const list = await dbCreateList(req.body.name);
+
+    res.status(200).json(list);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const lists = { fetchLists, fetchList, createList };

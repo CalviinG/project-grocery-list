@@ -1,5 +1,5 @@
 import { ColumnValue, Connection, Request } from 'tedious';
-import { EDatabaseModels, TGrocery } from '../core';
+import { EDatabaseModels, TGrocery, TList } from '../core';
 import { config } from './config';
 
 const idMap = {
@@ -101,4 +101,12 @@ export const dbUpdateGrocery = async (name: string, id: string) => {
   const grocery = await fetchOne<TGrocery>(EDatabaseModels.Grocery, id);
 
   return grocery;
+};
+
+export const dbCreateList = async (name: string) => {
+  const query = `INSERT INTO list(name) VALUES ('${name}'); SELECT @@IDENTITY AS id`;
+  const result = await execute<{ id: number }>(query);
+  const list = await fetchOne<TList>(EDatabaseModels.List, result[0].id.toString());
+
+  return list;
 };
