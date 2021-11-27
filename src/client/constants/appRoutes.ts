@@ -1,6 +1,7 @@
 export enum AppRoutes {
-  Groceries = '/groceries',
-  Grocery = '/groceries/:groceryId',
+  Home = '/',
   Lists = '/lists',
-  List = '/lists/:listId'
+  List = '/lists/:listId',
+  Groceries = '/groceries',
+  Grocery = '/groceries/:groceryId'
 }

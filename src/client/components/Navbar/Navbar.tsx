@@ -1,7 +1,6 @@
 import React from 'react';
-import KitchenIcon from '@mui/icons-material/Kitchen';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { IconButton, Paper, Stack } from '@mui/material';
+import { Box, Home, ShoppingCart } from 'react-feather';
 import styled from 'styled-components';
 import { CustomLink } from '~/components/CustomLink';
 import { AppRoutes } from '~/constants';
@@ -18,18 +17,22 @@ const StyledPaper = styled(Paper)`
 
 const StyledIconButton = styled(IconButton)<{ $active: boolean }>`
   ${({ theme, $active }) => `
-    color: ${$active ? theme.palette.primary.main : theme.palette.grey[500]};
+    color: ${$active ? theme.palette.primary.main : theme.palette.grey[400]};
   `}
 `;
 
 export const Navbar = () => {
   const items = [
     {
-      icon: <ShoppingBasketIcon />,
+      icon: <Home />,
+      route: AppRoutes.Home
+    },
+    {
+      icon: <ShoppingCart />,
       route: AppRoutes.Lists
     },
     {
-      icon: <KitchenIcon />,
+      icon: <Box />,
       route: AppRoutes.Groceries
     }
   ];
