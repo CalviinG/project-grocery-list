@@ -2,10 +2,11 @@ import { AppRoutes } from '~/constants';
 
 export const useAppRoute = () => {
   const routeMap = {
-    [AppRoutes.Groceries]: null,
-    [AppRoutes.Grocery]: ':groceryId',
+    [AppRoutes.Home]: null,
     [AppRoutes.Lists]: null,
-    [AppRoutes.List]: ':listId'
+    [AppRoutes.List]: ':listId',
+    [AppRoutes.Groceries]: null,
+    [AppRoutes.Grocery]: ':groceryId'
   };
 
   const appRoute = (route: AppRoutes, id?: string) => {

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Layout } from '~/components/Layout';
 import { AppRoutes } from '~/constants';
-import { Groceries, Grocery, List, Lists } from '~/modules';
+import { Groceries, Grocery, Home, List, Lists } from '~/modules';
 import { theme } from './theme';
 
 export const App = () => {
@@ -15,12 +15,11 @@ export const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Lists />} />
+              <Route index element={<Home />} />
               <Route path={AppRoutes.Groceries} element={<Groceries />} />
               <Route path={AppRoutes.Grocery} element={<Grocery />} />
               <Route path={AppRoutes.Lists} element={<Lists />} />
               <Route path={AppRoutes.List} element={<List />} />
-              <Route path="*" element={<Lists />} />
             </Route>
           </Routes>
         </BrowserRouter>
